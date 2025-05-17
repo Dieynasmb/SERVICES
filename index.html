@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mon Site Informatique - Accueil</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html" class="logo-link">
+        <img src="images/logo.png" alt="Logo" class="logo" />
+      </a>
+      <h1>Mon Site Informatique</h1>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="projet.html">Mes projets réalisés</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="presentation" class="section-light">
+      <h2>Présentation</h2>
+      <p>Bienvenue sur mon site de services informatiques ! Je mets à votre disposition mes compétences en développement web, programmation, réseau et plus encore pour répondre à vos besoins.</p>
+    </section>
+
+    <section id="services" class="section-dark">
+      <h2>Services</h2>
+      <ul>
+        <li>Développement Front-end : HTML, CSS, JavaScript</li>
+        <li>Développement Back-end : Node.js, Django, Flask</li>
+        <li>Base de données : MySQL, Firebase</li>
+        <li>Gestion de réseaux et sécurité informatique</li>
+        <li>Création de sites web responsives et modernes</li>
+        <li>Maintenance et support technique</li>
+      </ul>
+    </section>
+
+    <section id="contact" class="section-light">
+      <h2>Contactez-moi</h2>
+      <form id="contactForm">
+        <label for="nom">Nom complet</label>
+        <input type="text" id="nom" name="nom" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit">Envoyer</button>
+        <p id="feedback" class="feedback"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Mon Site Informatique - Tous droits réservés</p>
+  </footer>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.3/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.7.3/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBH2JRo0YlvDp4gvBWUnx3sjMOaITvZcaY",
+      authDomain: "mon-site-informatique.firebaseapp.com",
+      projectId: "mon-site-informatique",
+      storageBucket: "mon-site-informatique.appspot.com",
+      messagingSenderId: "707446638161",
+      appId: "1:707446638161:web:be9e759beffd0c57b7da70"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const form = document.getElementById('contactForm');
+    const feedback = document.getElementById('feedback');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const nom = form.nom.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+
+      if (!nom || !email || !message) {
+        feedback.textContent = "Veuillez remplir tous les champs.";
+        feedback.style.color = "red";
+        return;
+      }
+
+      try {
+        await addDoc(collection(db, "contacts"), {
+          nom,
+          email,
+          message,
+          date: new Date().toISOString()
+        });
+
+        feedback.textContent = "Message envoyé avec succès, merci !";
+        feedback.style.color = "lightgreen";
+        form.reset();
+      } catch (error) {
+        feedback.textContent = "Erreur lors de l'envoi, veuillez réessayer.";
+        feedback.style.color = "red";
+        console.error("Erreur Firestore:", error);
+      }
+    });
+  </script>
+</body>
+</html>

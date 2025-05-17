@@ -1,0 +1,266 @@
+/* Reset global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0f0f1a;
+  color: #e0e0e0;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER + NAVIGATION */
+header {
+  background-color: #111133;
+  padding: 15px 30px;
+  box-shadow: 0 3px 8px rgba(0, 255, 255, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+  margin-right: 15px;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+nav h1 {
+  color: #00ffff;
+  font-weight: 700;
+  flex-grow: 1;
+  text-align: center;
+  font-size: 1.8rem;
+  letter-spacing: 1.5px;
+  user-select: none;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+nav ul li a {
+  color: #00ffff;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 5px 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+  background-color: #00ffff;
+  color: #0f0f1a;
+  outline: none;
+}
+
+/* MAIN CONTENT */
+main {
+  flex-grow: 1;
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* SECTIONS */
+.section-light {
+  background: #1a1a2e;
+  padding: 30px 40px;
+  border-radius: 16px;
+  margin-bottom: 40px;
+  box-shadow: 0 0 20px #00ffffaa;
+  transition: box-shadow 0.4s ease;
+}
+
+.section-light:hover {
+  box-shadow: 0 0 30px #00ffffee;
+}
+
+.section-light h2,
+.section-dark h2 {
+  color: #00ffff;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  letter-spacing: 1.2px;
+  user-select: none;
+}
+
+/* Text inside sections */
+.section-light p,
+.section-light ul,
+.section-dark p,
+.section-dark ul {
+  font-size: 1.1rem;
+  color: #c0c0c0;
+  line-height: 1.5;
+}
+
+.section-light ul,
+.section-dark ul {
+  list-style: inside disc;
+  margin-top: 10px;
+}
+
+/* Darker section style */
+.section-dark {
+  background: #0a0a1f;
+  padding: 30px 40px;
+  border-radius: 16px;
+  margin-bottom: 40px;
+  box-shadow: 0 0 20px #00ccccaa;
+  transition: box-shadow 0.4s ease;
+}
+
+.section-dark:hover {
+  box-shadow: 0 0 30px #00ccccee;
+}
+
+/* FORM CONTACT */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: 600;
+  color: #00ffff;
+  font-size: 1.05rem;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  padding: 12px 15px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: #222244;
+  color: #e0e0e0;
+  box-shadow: inset 0 0 8px #00ffff55;
+  transition: box-shadow 0.3s ease;
+  resize: vertical;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 10px #00ffffcc;
+}
+
+button[type="submit"] {
+  background-color: #00ffff;
+  color: #0f0f1a;
+  font-weight: 700;
+  padding: 12px 20px;
+  font-size: 1.15rem;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  align-self: flex-start;
+  box-shadow: 0 0 15px #00ffffcc;
+}
+
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+  background-color: #00cccc;
+  color: #fff;
+  outline: none;
+  box-shadow: 0 0 20px #00ccccee;
+}
+
+/* Feedback message */
+.feedback {
+  font-weight: 600;
+  font-size: 1rem;
+  user-select: none;
+}
+
+/* FOOTER */
+footer {
+  background-color: #111133;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #00ffffaa;
+  user-select: none;
+  box-shadow: inset 0 1px 3px #00ffff44;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  nav h1 {
+    order: 3;
+    font-size: 1.5rem;
+  }
+
+  nav ul {
+    justify-content: center;
+    gap: 15px;
+    order: 2;
+    width: 100%;
+  }
+
+  main {
+    padding: 25px 15px;
+  }
+
+  .section-light,
+  .section-dark {
+    padding: 20px 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  nav ul {
+    flex-wrap: wrap;
+  }
+
+  nav ul li {
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 10px 5px;
+  }
+}
